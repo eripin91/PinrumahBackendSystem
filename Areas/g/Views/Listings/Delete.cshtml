@@ -1,0 +1,220 @@
+﻿@model PinBackendSystem.Models.Listing
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Delete listing</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="~/Listings">Listing</a></li>
+                        <li class="breadcrumb-item active">Delete</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <h3>Apakah anda yakin mau delete ini?</h3>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PropertyId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PropertyId)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.Raw(Model.Description.Replace("\r\n", "<br />"))
+                </dd>
+                @if (!string.IsNullOrEmpty(Model.ImagePath1))
+                {
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ImagePath1)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="@Url.Content(Model.ImagePath1)" alt="@Url.Content(Model.ImagePath1)" width="300" height="300" />
+                    </dd>
+                }
+                @if (!string.IsNullOrEmpty(Model.ImagePath2))
+                {
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ImagePath2)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="@Url.Content(Model.ImagePath2)" alt="@Url.Content(Model.ImagePath2)" width="300" height="300" />
+                    </dd>
+                }
+                @if (!string.IsNullOrEmpty(Model.ImagePath3))
+                {
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ImagePath3)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="@Url.Content(Model.ImagePath3)" alt="@Url.Content(Model.ImagePath3)" width="300" height="300" />
+                    </dd>
+                }
+                @if (!string.IsNullOrEmpty(Model.ImagePath4))
+                {
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ImagePath4)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="@Url.Content(Model.ImagePath4)" alt="@Url.Content(Model.ImagePath4)" width="300" height="300" />
+                    </dd>
+                }
+                @if (!string.IsNullOrEmpty(Model.ImagePath5))
+                {
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ImagePath5)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="@Url.Content(Model.ImagePath5)" alt="@Url.Content(Model.ImagePath5)" width="300" height="300" />
+                    </dd>
+                }
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LandSize)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.LandSize)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.BuildingSize)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.BuildingSize)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PropertyType)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PropertyType)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NoOfBed)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NoOfBed)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NoOfBath)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NoOfBath)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NoOfFloor)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NoOfFloor)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NoOfGarage)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NoOfGarage)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PropertyCondition)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PropertyCondition)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Features)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Features)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedOn)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedBy)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ModifiedOn)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ModifiedOn)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ModifiedBy)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ModifiedBy)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AgentName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.AgentName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AgentEmail)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.AgentEmail)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AgentMobileNo)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.AgentMobileNo)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.OwnerName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.OwnerName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.OwnerMobileNo)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.OwnerMobileNo)
+                </dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-action="Index">Back to List</a>
+            </form>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

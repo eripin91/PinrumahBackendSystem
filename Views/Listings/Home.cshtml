@@ -1,0 +1,618 @@
+﻿@model PinBackendSystem.Models.ListingPropertyTypeViewModel
+
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<PinBackendSystem.Areas.Identity.PinrumahUser> UserManager
+
+@{
+    ViewData["Title"] = "Home";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+
+    <!-- Main content -->
+    <section class="content _bg-hero">
+        <form asp-controller="Listings" asp-action="Index" method="get">
+            <div class="_home-header-index">
+                <div class="_transparent-box">
+                    <div class="_select-holder">
+                        <select class="_select-horizontal" size="2" id="TransactionType" name="TransactionType" asp-items="Model.TransactionType" asp-for="@ViewData["CurrentTransactionType"]">
+                        </select>
+                    </div>
+                    <div class="form-row mb-3 _hide-in-mobile">
+                        <div class="col-lg-2">
+                            <select id="Kota" name="Kota" asp-items="Model.Kota" class="selectpicker" asp-for="@ViewData["CurrentKota"]">
+                                <option value="">Kota</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <select id="Kecamatan" name="Kecamatan" asp-items="Model.Kecamatan" class="selectpicker" asp-for="@ViewData["CurrentKecamatan"]">
+                                <option value="">Kecamatan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-10 _hide-in-desktop">
+                            <input type="text" asp-for="SearchString" value="@ViewData["CurrentFilter"]"
+                                   data-toggle="modal" data-target="#myModal"
+                                   style="font-family:Arial, FontAwesome"
+                                   placeholder="&#xf002; Cari berdasarkan judul" class="form-control" />
+                        </div>
+                        <div class="col-lg-10 _hide-in-mobile">
+                            <input type="text" asp-for="SearchString" value="@ViewData["CurrentFilter"]"
+                                   style="font-family:Arial, FontAwesome"
+                                   placeholder="&#xf002; Cari berdasarkan judul" class="form-control" />
+                        </div>
+
+                        <div class="col-lg-2 _hide-in-mobile">
+                            <input type="submit" value="Cari" class="btn-primary form-control" />
+                        </div>
+                    </div>
+                    <div class="form-row mt-2 _hide-in-mobile">
+                        <div class="col-lg-2">
+                            <select id="PropertyType" name="PropertyType" asp-items="Model.PropertyType" class="selectpicker" asp-for="@ViewData["CurrentPropertyType"]">
+                                <option value="">Tipe Properti</option>
+                            </select>
+                        </div>
+                        @*<div class="col-lg-2">
+                                <select id="PropertyType" name="MinBed" class="selectpicker" asp-for="@ViewData["CurrentMinBed"]">
+                                    <option value="">Kamar Tidur(Min)</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>*@
+                        <div class="col-lg-2">
+                            <select id="MinPrice" name="MinPrice" class="selectpicker" asp-for="@ViewData["CurrentMinPrice"]">
+                                <option value="">Harga(Min)</option>
+                                <option value="50000000">Rp 50.000.000</option>
+                                <option value="100000000">Rp 100.000.000</option>
+                                <option value="150000000">Rp 150.000.000</option>
+                                <option value="200000000">Rp 200.000.000</option>
+                                <option value="250000000">Rp 250.000.000</option>
+                                <option value="300000000">Rp 300.000.000</option>
+                                <option value="350000000">Rp 350.000.000</option>
+                                <option value="400000000">Rp 400.000.000</option>
+                                <option value="450000000">Rp 450.000.000</option>
+                                <option value="500000000">Rp 500.000.000</option>
+                                <option value="600000000">Rp 600.000.000</option>
+                                <option value="700000000">Rp 700.000.000</option>
+                                <option value="800000000">Rp 800.000.000</option>
+                                <option value="900000000">Rp 900.000.000</option>
+                                <option value="1000000000">Rp 1.000.000.000</option>
+                                <option value="1500000000">Rp 1.500.000.000</option>
+                                <option value="2000000000">Rp 2.000.000.000</option>
+                                <option value="3000000000">Rp 3.000.000.000</option>
+                                <option value="4000000000">Rp 4.000.000.000</option>
+                                <option value="5000000000">Rp 5.000.000.000</option>
+                                <option value="8000000000">Rp 8.000.000.000</option>
+                                <option value="10000000000">Rp 10.000.000.000</option>
+                                <option value="50000000000">Rp 50.000.000.000</option>
+                                <option value="100000000000">Rp 100.000.000.000</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <select id="MaxPrice" name="MaxPrice" class="selectpicker" asp-for="@ViewData["CurrentMaxPrice"]">
+                                <option value="">Harga(Max)</option>
+                                <option value="50000000">Rp 50.000.000</option>
+                                <option value="100000000">Rp 100.000.000</option>
+                                <option value="150000000">Rp 150.000.000</option>
+                                <option value="200000000">Rp 200.000.000</option>
+                                <option value="250000000">Rp 250.000.000</option>
+                                <option value="300000000">Rp 300.000.000</option>
+                                <option value="350000000">Rp 350.000.000</option>
+                                <option value="400000000">Rp 400.000.000</option>
+                                <option value="450000000">Rp 450.000.000</option>
+                                <option value="500000000">Rp 500.000.000</option>
+                                <option value="600000000">Rp 600.000.000</option>
+                                <option value="700000000">Rp 700.000.000</option>
+                                <option value="800000000">Rp 800.000.000</option>
+                                <option value="900000000">Rp 900.000.000</option>
+                                <option value="1000000000">Rp 1.000.000.000</option>
+                                <option value="1500000000">Rp 1.500.000.000</option>
+                                <option value="2000000000">Rp 2.000.000.000</option>
+                                <option value="3000000000">Rp 3.000.000.000</option>
+                                <option value="4000000000">Rp 4.000.000.000</option>
+                                <option value="5000000000">Rp 5.000.000.000</option>
+                                <option value="8000000000">Rp 8.000.000.000</option>
+                                <option value="10000000000">Rp 10.000.000.000</option>
+                                <option value="50000000000">Rp 50.000.000.000</option>
+                                <option value="100000000000">Rp 100.000.000.000</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <select id="MinLandSize" name="MinLandSize" class="selectpicker" asp-for="@ViewData["CurrentMinLandSize"]">
+                                <option value="">Luas Tanah(Min)</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
+                                <option value="200">200</option>
+                                <option value="250">250</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                                <option value="2000">2000</option>
+                                <option value="3000">3000</option>
+                                <option value="4000">4000</option>
+                                <option value="5000">5000</option>
+                                <option value="6000">6000</option>
+                                <option value="7000">7000</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <select id="MaxLandSize" name="MaxLandSize" class="selectpicker" asp-for="@ViewData["CurrentMaxLandSize"]">
+                                <option value="">Luas Tanah(Max)</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
+                                <option value="200">200</option>
+                                <option value="250">250</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                                <option value="2000">2000</option>
+                                <option value="3000">3000</option>
+                                <option value="4000">4000</option>
+                                <option value="5000">5000</option>
+                                <option value="6000">6000</option>
+                                <option value="7000">7000</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </section>
+    <!-- /.content -->
+    <!-- Shortcut -->
+
+    <div class="_separator-icon"></div>
+    <div class="container _icon-container">
+        <div><h4>Beli</h4></div>
+        <div>
+            <a asp-action="Index"
+               asp-route-PropertyType="Rumah"
+               asp-route-transactionType="Dijual">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/rumah.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Rumah</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Ruko"
+               asp-route-transactionType="Dijual">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/ruko.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Ruko</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Kost"
+               asp-route-transactionType="Dijual">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/rukost.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Kost</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Hotel"
+               asp-route-transactionType="Dijual">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/hotel.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Hotel</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Gudang"
+               asp-route-transactionType="Dijual">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/gudang.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Gudang</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Tanah"
+               asp-route-transactionType="Dijual">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/tanah.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Tanah</span>
+                </div>
+            </a>
+        </div>
+        <!--Disewa-->
+        <div class="_separator-feature-listing"></div>
+        <div><h4>Sewa</h4></div>
+        <div>
+            <a asp-action="Index"
+               asp-route-PropertyType="Rumah"
+               asp-route-transactionType="Disewa">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/rumah.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Rumah</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Ruko"
+               asp-route-transactionType="Disewa">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/ruko.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Ruko</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Kost"
+               asp-route-transactionType="Disewa">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/rukost.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Kost</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Hotel"
+               asp-route-transactionType="Disewa">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/hotel.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Hotel</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Gudang"
+               asp-route-transactionType="Disewa">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/gudang.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Gudang</span>
+                </div>
+            </a>
+            <a asp-action="Index"
+               asp-route-PropertyType="Tanah"
+               asp-route-transactionType="Disewa">
+                <div class="_icon-item">
+                    <img src="~/theme/dist/img/icon/tanah.png" class="_icon-image" />
+                    <span class="text-pinrumah-color">Tanah</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- /.Shortcut -->
+    <!-- Feature Listing-->
+    <div class="_separator-feature-listing"></div>
+    <div id="myCarousel" class="carousel multi-carousel slide w-100 _hide-in-mobile" data-ride="carousel">
+        <div class="carousel-inner w-100" role="listbox">
+
+            @{
+                var firstListing = Model.Listings.FirstOrDefault(s => s.IsFeatured);
+                if (firstListing != null)
+                {
+                    var otherListing = Model.Listings.Where(s => s.IsFeatured && s.Id != firstListing.Id);
+
+                    <div class="carousel-item multi-carousel-item active">
+                        <div class="col-lg-4 col-md-6">
+                            <a asp-action="Details" asp-route-id="@firstListing.Id">
+                                <img class="img-fluid _img-carousel-home" src="@firstListing.ImagePath1">
+                            </a>
+                        </div>
+                    </div>
+
+                    foreach (var item in otherListing)
+                    {
+                        <div class="carousel-item multi-carousel-item">
+                            <div class="col-lg-4 col-md-6">
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                    <img class="img-fluid _img-carousel-home" src="@item.ImagePath1">
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+        <a class="carousel-control-prev bg-dark w-auto" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next bg-dark w-auto" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div id="carouselExampleIndicators" class="carousel slide _hide-in-desktop" data-ride="carousel">
+
+        <div class="carousel-inner">
+            @{
+                var mobileFirstListing = Model.Listings.FirstOrDefault(s => s.IsFeatured);
+
+                if (mobileFirstListing != null)
+                {
+                    var mobileOtherListing = Model.Listings.Where(s => s.IsFeatured && s.Id != firstListing.Id);
+
+                    <div class="carousel-item active">
+                        <a asp-action="Details" asp-route-id="@mobileFirstListing.Id">
+                            <img class="d-block w-100 _img-carousel-home" src="@mobileFirstListing.ImagePath1" alt="First slide">
+                        </a>
+                    </div>
+
+                    foreach (var item in mobileOtherListing)
+                    {
+                        <div class="carousel-item">
+                            <a asp-action="Details" asp-route-id="@item.Id">
+                                <img class="d-block w-100 _img-carousel-home" src="@item.ImagePath1" alt="Second slide">
+                            </a>
+                        </div>
+                    }
+                }
+            }
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade _modal-mobile" id="myModal" role="dialog" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-controller="Listings" asp-action="Index" method="get">
+                <div class="modal-body p-4" id="result">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="_select-holder modal-title">
+                                <select class="_select-horizontal" size="2" id="TransactionTypeModal" name="TransactionType" asp-items="Model.TransactionType" asp-for="@ViewData["CurrentTransactionType"]">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="m-2">Kota</label>
+                                <select id="Kota" name="Kota" asp-items="Model.Kota" class="selectpicker form-control" asp-for="@ViewData["CurrentKota"]">
+                                    <option value="">Semua</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="m-2">Kecamatan</label>
+                                <select id="Kecamatan" name="Kecamatan" asp-items="Model.Kecamatan" class="selectpicker form-control" asp-for="@ViewData["CurrentKecamatan"]">
+                                    <option value="">Semua</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="m-2">Tipe properti</label>
+                                <select id="PropertyType" name="PropertyType" asp-items="Model.PropertyType" class="selectpicker form-control" asp-for="@ViewData["CurrentPropertyType"]">
+                                    <option value="">Semua</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="m-2">Harga(Min)</label>
+                                <select id="PropertyType" name="MinPrice" class="selectpicker form-control" asp-for="@ViewData["CurrentMinPrice"]">
+                                    <option value="">Berapapun</option>
+                                    <option value="50000000">Rp 50.000.000</option>
+                                    <option value="100000000">Rp 100.000.000</option>
+                                    <option value="150000000">Rp 150.000.000</option>
+                                    <option value="200000000">Rp 200.000.000</option>
+                                    <option value="250000000">Rp 250.000.000</option>
+                                    <option value="300000000">Rp 300.000.000</option>
+                                    <option value="350000000">Rp 350.000.000</option>
+                                    <option value="400000000">Rp 400.000.000</option>
+                                    <option value="450000000">Rp 450.000.000</option>
+                                    <option value="500000000">Rp 500.000.000</option>
+                                    <option value="600000000">Rp 600.000.000</option>
+                                    <option value="700000000">Rp 700.000.000</option>
+                                    <option value="800000000">Rp 800.000.000</option>
+                                    <option value="900000000">Rp 900.000.000</option>
+                                    <option value="1000000000">Rp 1.000.000.000</option>
+                                    <option value="1200000000">Rp 1.200.000.000</option>
+                                    <option value="1400000000">Rp 1.400.000.000</option>
+                                    <option value="1600000000">Rp 1.600.000.000</option>
+                                    <option value="1800000000">Rp 1.800.000.000</option>
+                                    <option value="2000000000">Rp 2.000.000.000</option>
+                                    <option value="2200000000">Rp 2.200.000.000</option>
+                                    <option value="2400000000">Rp 2.400.000.000</option>
+                                    <option value="2600000000">Rp 2.600.000.000</option>
+                                    <option value="2800000000">Rp 2.800.000.000</option>
+                                    <option value="3000000000">Rp 3.000.000.000</option>
+                                    <option value="4000000000">Rp 4.000.000.000</option>
+                                    <option value="5000000000">Rp 5.000.000.000</option>
+                                    <option value="8000000000">Rp 8.000.000.000</option>
+                                    <option value="10000000000">Rp 10.000.000.000</option>
+                                    <option value="50000000000">Rp 50.000.000.000</option>
+                                    <option value="100000000000">Rp 100.000.000.000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="m-2">Harga(Max)</label>
+                                <select id="PropertyType" name="MaxPrice" class="selectpicker form-control" asp-for="@ViewData["CurrentMaxPrice"]">
+                                    <option value="">Berapapun</option>
+                                    <option value="50000000">Rp 50.000.000</option>
+                                    <option value="100000000">Rp 100.000.000</option>
+                                    <option value="150000000">Rp 150.000.000</option>
+                                    <option value="200000000">Rp 200.000.000</option>
+                                    <option value="250000000">Rp 250.000.000</option>
+                                    <option value="300000000">Rp 300.000.000</option>
+                                    <option value="350000000">Rp 350.000.000</option>
+                                    <option value="400000000">Rp 400.000.000</option>
+                                    <option value="450000000">Rp 450.000.000</option>
+                                    <option value="500000000">Rp 500.000.000</option>
+                                    <option value="600000000">Rp 600.000.000</option>
+                                    <option value="700000000">Rp 700.000.000</option>
+                                    <option value="800000000">Rp 800.000.000</option>
+                                    <option value="900000000">Rp 900.000.000</option>
+                                    <option value="1000000000">Rp 1.000.000.000</option>
+                                    <option value="1200000000">Rp 1.200.000.000</option>
+                                    <option value="1400000000">Rp 1.400.000.000</option>
+                                    <option value="1600000000">Rp 1.600.000.000</option>
+                                    <option value="1800000000">Rp 1.800.000.000</option>
+                                    <option value="2000000000">Rp 2.000.000.000</option>
+                                    <option value="2200000000">Rp 2.200.000.000</option>
+                                    <option value="2400000000">Rp 2.400.000.000</option>
+                                    <option value="2600000000">Rp 2.600.000.000</option>
+                                    <option value="2800000000">Rp 2.800.000.000</option>
+                                    <option value="3000000000">Rp 3.000.000.000</option>
+                                    <option value="4000000000">Rp 4.000.000.000</option>
+                                    <option value="5000000000">Rp 5.000.000.000</option>
+                                    <option value="8000000000">Rp 8.000.000.000</option>
+                                    <option value="10000000000">Rp 10.000.000.000</option>
+                                    <option value="50000000000">Rp 50.000.000.000</option>
+                                    <option value="100000000000">Rp 100.000.000.000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="m-2">Luas Tanah(Min)</label>
+                                <select id="MinLandSize" name="MinLandSize" class="selectpicker form-control" asp-for="@ViewData["CurrentMinLandSize"]">
+                                    <option value="">Berapapun</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="150">150</option>
+                                    <option value="200">200</option>
+                                    <option value="250">250</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="2000">2000</option>
+                                    <option value="3000">3000</option>
+                                    <option value="4000">4000</option>
+                                    <option value="5000">5000</option>
+                                    <option value="6000">6000</option>
+                                    <option value="7000">7000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="m-2">Luas Tanah(Max)</label>
+                                <select id="MaxLandSize" name="MaxLandSize" class="selectpicker form-control" asp-for="@ViewData["CurrentMaxLandSize"]">
+                                    <option value="">Berapapun</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="150">150</option>
+                                    <option value="200">200</option>
+                                    <option value="250">250</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                    <option value="2000">2000</option>
+                                    <option value="3000">3000</option>
+                                    <option value="4000">4000</option>
+                                    <option value="5000">5000</option>
+                                    <option value="6000">6000</option>
+                                    <option value="7000">7000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Cari" class="btn-primary form-control" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.content-wrapper -->
+@section Scripts
+{    
+    <style>
+    /* medium - display 2  */
+        @@media (min-width: 768px) {
+
+            .carousel-inner .carousel-item-right.active,
+            .carousel-inner .carousel-item-next {
+                transform: translateX(50%);
+            }
+
+            .carousel-inner .carousel-item-left.active,
+            .carousel-inner .carousel-item-prev {
+                transform: translateX(-50%);
+            }
+        }
+        /* large - display 3 */
+        @@media (min-width: 992px) {
+            .carousel-inner .carousel-item-right.active, .carousel-inner .carousel-item-next {
+                transform: translateX(33%);
+            }
+
+            .carousel-inner .carousel-item-left.active,
+            .carousel-inner .carousel-item-prev {
+                transform: translateX(-33%);
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .carousel-inner .carousel-item > div {
+                display: none;
+            }
+
+                .carousel-inner .carousel-item > div:first-child {
+                    display: block;
+                }
+        }
+
+        .carousel-inner .carousel-item.active,
+        .carousel-inner .carousel-item-next,
+        .carousel-inner .carousel-item-prev {
+            display: flex;
+        }
+
+        .carousel-inner .carousel-item-right,
+        .carousel-inner .carousel-item-left {
+            transform: translateX(0);
+        }
+    </style>
+    <script src="~/theme/dist/js/carousel.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#TransactionType").val('Dijual');
+            $("#TransactionTypeModal").val('Dijual');
+
+            $("#Kota").change(function () {
+            var val = $(this).val();
+            var subItems="";
+                $.getJSON("@Url.Action("GetKecamatan","Listings")", {kotaName:val} ,function (data) {
+                    $.each(data, function (index, item) {
+                    subItems+="<option value='"+item.value+"'>"+item.text+"</option>"
+                  });
+                    $("#Kecamatan").html(subItems);
+                    $('#Kecamatan').selectpicker('refresh');
+                });
+            });
+
+
+        });
+
+    </script>
+}

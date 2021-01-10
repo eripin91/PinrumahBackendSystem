@@ -1,0 +1,238 @@
+﻿@model PinBackendSystem.Models.Listing
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Edit Listing</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="~/Listings">Listing</a></li>
+                        <li class="breadcrumb-item active">Edit</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="PropertyId" class="control-label"></label>
+                        <input asp-for="PropertyId" class="form-control" />
+                        <span asp-validation-for="PropertyId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <input asp-for="ImagePath1" class="form-control" />
+                        <input asp-for="ImagePath2" class="form-control" />
+                        <input asp-for="ImagePath3" class="form-control" />
+                        <input asp-for="ImagePath4" class="form-control" />
+                        <input asp-for="ImagePath5" class="form-control" />
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.ImagePath1))
+                    {
+                        <div class="form-group">
+                            <label asp-for="ImagePath1" class="control-label"></label>
+                            <img src="@Url.Content(Model.ImagePath1)" alt="@Url.Content(Model.ImagePath1)" width="300" />
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label asp-for="File1" class="control-label">Upload Gambar 1 yang baru</label>
+                        <input asp-for="File1" class="form-control" type="file" />
+                        <span asp-validation-for="File1" class="text-danger"></span>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.ImagePath2))
+                    {
+
+                        <div class="form-group">
+                            <label asp-for="ImagePath2" class="control-label"></label>
+                            <img src="@Url.Content(Model.ImagePath2)" alt="@Url.Content(Model.ImagePath2)" width="300" />
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label asp-for="File2" class="control-label">Upload Gambar 2 yang baru</label>
+                        <input asp-for="File2" class="form-control" type="file" />
+                        <span asp-validation-for="File2" class="text-danger"></span>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.ImagePath3))
+                    {
+                        <div class="form-group">
+                            <label asp-for="ImagePath3" class="control-label"></label>
+                            <img src="@Url.Content(Model.ImagePath3)" alt="@Url.Content(Model.ImagePath3)" width="300" />
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label asp-for="File3" class="control-label">Upload Gambar 3 yang baru</label>
+                        <input asp-for="File3" class="form-control" type="file" />
+                        <span asp-validation-for="File3" class="text-danger"></span>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.ImagePath4))
+                    {
+                        <div class="form-group">
+                            <label asp-for="ImagePath4" class="control-label"></label>
+                            <img src="@Url.Content(Model.ImagePath4)" alt="@Url.Content(Model.ImagePath4)" width="300" />
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label asp-for="File4" class="control-label">Upload Gambar 4 yang baru</label>
+                        <input asp-for="File4" class="form-control" type="file" />
+                        <span asp-validation-for="File4" class="text-danger"></span>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.ImagePath5))
+                    {
+                        <div class="form-group">
+                            <label asp-for="ImagePath5" class="control-label"></label>
+                            <img src="@Url.Content(Model.ImagePath5)" alt="@Url.Content(Model.ImagePath5)" width="300" />
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label asp-for="File5" class="control-label">Upload Gambar 5 yang baru</label>
+                        <input asp-for="File5" class="form-control" type="file" />
+                        <span asp-validation-for="File5" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LandSize" class="control-label"></label>
+                        <input asp-for="LandSize" class="form-control" />
+                        <span asp-validation-for="LandSize" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BuildingSize" class="control-label"></label>
+                        <input asp-for="BuildingSize" class="form-control" />
+                        <span asp-validation-for="BuildingSize" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropertyType" class="control-label"></label>
+                        <input asp-for="PropertyType" class="form-control" />
+                        <span asp-validation-for="PropertyType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfBed" class="control-label"></label>
+                        <input asp-for="NoOfBed" class="form-control" />
+                        <span asp-validation-for="NoOfBed" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfBath" class="control-label"></label>
+                        <input asp-for="NoOfBath" class="form-control" />
+                        <span asp-validation-for="NoOfBath" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfFloor" class="control-label"></label>
+                        <input asp-for="NoOfFloor" class="form-control" />
+                        <span asp-validation-for="NoOfFloor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfGarage" class="control-label"></label>
+                        <input asp-for="NoOfGarage" class="form-control" />
+                        <span asp-validation-for="NoOfGarage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropertyCondition" class="control-label"></label>
+                        <input asp-for="PropertyCondition" class="form-control" />
+                        <span asp-validation-for="PropertyCondition" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Features" class="control-label"></label>
+                        <input asp-for="Features" class="form-control" />
+                        <span asp-validation-for="Features" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="CreatedOn" class="control-label"></label>
+                        <input asp-for="CreatedOn" class="form-control" />
+                        <span asp-validation-for="CreatedOn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="CreatedBy" class="control-label"></label>
+                        <input asp-for="CreatedBy" class="form-control" />
+                        <span asp-validation-for="CreatedBy" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="ModifiedOn" class="control-label"></label>
+                        <input asp-for="ModifiedOn" class="form-control" />
+                        <span asp-validation-for="ModifiedOn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="ModifiedBy" class="control-label"></label>
+                        <input asp-for="ModifiedBy" class="form-control" />
+                        <span asp-validation-for="ModifiedBy" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="AgentName" class="control-label"></label>
+                        <input asp-for="AgentName" class="form-control" />
+                        <span asp-validation-for="AgentName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group hide" hidden>
+                        <label asp-for="AgentEmail" class="control-label"></label>
+                        <input asp-for="AgentEmail" class="form-control" />
+                        <span asp-validation-for="AgentEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="AgentMobileNo" class="control-label"></label>
+                        <input asp-for="AgentMobileNo" class="form-control" />
+                        <span asp-validation-for="AgentMobileNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OwnerName" class="control-label"></label>
+                        <input asp-for="OwnerName" class="form-control" />
+                        <span asp-validation-for="OwnerName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OwnerMobileNo" class="control-label"></label>
+                        <input asp-for="OwnerMobileNo" class="form-control" />
+                        <span asp-validation-for="OwnerMobileNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Scripts
+{
+    <script>tinymce.init({ selector: 'textarea', menubar: false });</script>
+}

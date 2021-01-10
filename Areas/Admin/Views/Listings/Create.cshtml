@@ -1,0 +1,315 @@
+﻿@model PinBackendSystem.Models.Listing
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Create Listing</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Listing</li>
+                        <li class="breadcrumb-item active">Create</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <h4>Rumah</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create" id="my-awesome-dropzone" class="dropzone" enctype="multipart/form-data" asp-route-returnurl="@Context.Request.Query["returnurl"]">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="TransactionType" class="control-label"></label>
+                        <select asp-for="TransactionType" asp-items="Model.TransactionTypes" class="form-control"></select>
+                        <span asp-validation-for="TransactionType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control">adsf</textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="File1" class="control-label"></label>
+                        <input asp-for="File1" class="form-control" accept='image/*' type="file" />
+                        <span asp-validation-for="File1" class="text-danger"></span>
+                        <div class="GalleryFile1 form-group"></div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FileList" class="control-label"></label>
+                        <input asp-for="FileList" class="form-control" multiple accept='image/*' type="file" />
+                        <span asp-validation-for="FileList" class="text-danger"></span>
+                    </div>
+                    <div class="gallery form-group"></div>
+                    <div class="form-group">
+                        <label asp-for="File6" class="control-label"></label>
+                        <input asp-for="File6" class="form-control" accept='image/*' type="file" />
+                        <span asp-validation-for="File6" class="text-danger"></span>
+                        <div class="GalleryFile6 form-group"></div>
+                    </div>
+                    @*<div class="form-group">
+            <label asp-for="File1" class="control-label"></label>
+            <input asp-for="File1" multiple class="form-control" type="file"/>
+            <img ID="impPrev" height="100" />
+            <span asp-validation-for="File1" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="File2" class="control-label"></label>
+            <input asp-for="File2" class="form-control" type="file" />
+            <span asp-validation-for="File2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="File3" class="control-label"></label>
+            <input asp-for="File3" class="form-control" type="file" />
+            <span asp-validation-for="File3" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="File4" class="control-label"></label>
+            <input asp-for="File4" class="form-control" type="file" />
+            <span asp-validation-for="File4" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="File5" class="control-label"></label>
+            <input asp-for="File5" class="form-control" type="file" />
+            <span asp-validation-for="File5" class="text-danger"></span>
+        </div>*@
+
+                    <div class="form-group">
+                        <label asp-for="Certificate" class="control-label"></label>
+                        <input asp-for="Certificate" class="form-control" />
+                        <span asp-validation-for="Certificate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Kota" class="control-label"></label>
+                        <select asp-for="Kota" asp-items="Model.Kotas" class="form-control">
+                            <option value="">Pilih Kota</option>
+                        </select>
+                        <span asp-validation-for="Kota" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Kecamatan" class="control-label"></label>
+                        <select asp-for="Kecamatan" asp-items="Model.Kecamatans" class="form-control">
+                            <option value="">Pilih Kecamatan</option>
+                        </select>
+                        <span asp-validation-for="Kecamatan" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Width" class="control-label"></label>
+                        <input asp-for="Width" class="form-control" />
+                        <span asp-validation-for="Width" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Length" class="control-label"></label>
+                        <input asp-for="Length" class="form-control" />
+                        <span asp-validation-for="Length" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LandSize" class="control-label"></label>
+                        <input asp-for="LandSize" class="form-control" />
+                        <span asp-validation-for="LandSize" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BuildingSize" class="control-label"></label>
+                        <input asp-for="BuildingSize" class="form-control" />
+                        <span asp-validation-for="BuildingSize" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropertyType" class="control-label"></label>
+                        <select asp-for="PropertyType" asp-items="Model.PropertyTypes" class="form-control"></select>
+                        <span asp-validation-for="PropertyType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Interior" class="control-label"></label>
+                        <select asp-for="Interior" asp-items="Model.Interiors" class="form-control"></select>
+                        <span asp-validation-for="Interior" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Orientation" class="control-label"></label>
+                        <select asp-for="Orientation" asp-items="Model.Orientations" class="form-control"></select>
+                        <span asp-validation-for="Orientation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Electricity" class="control-label"></label>
+                        <input asp-for="Electricity" class="form-control" type="number" />
+                        <span asp-validation-for="Electricity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Water" class="control-label"></label>
+                        <input asp-for="Water" class="form-control" />
+                        <span asp-validation-for="Water" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfBed" class="control-label"></label>
+                        <input asp-for="NoOfBed" class="form-control" type="number" />
+                        <span asp-validation-for="NoOfBed" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfBath" class="control-label"></label>
+                        <input asp-for="NoOfBath" class="form-control" type="number" />
+                        <span asp-validation-for="NoOfBath" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfFloor" class="control-label"></label>
+                        <input asp-for="NoOfFloor" class="form-control" type="number" />
+                        <span asp-validation-for="NoOfFloor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfGarage" class="control-label"></label>
+                        <input asp-for="NoOfGarage" class="form-control" type="number" />
+                        <span asp-validation-for="NoOfGarage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropertyCondition" class="control-label"></label>
+                        <select asp-for="PropertyCondition" asp-items="Model.PropertyConditions" class="form-control"></select>
+                        <span asp-validation-for="PropertyCondition" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" value="0" class="form-control" unformatOnSubmit="true" onkeyup="javascript:this.value=Comma(this.value);" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    @for (Int32 i = 0; i < this.Model.Features.Count; i++)
+                    {
+                        <input type="checkbox" asp-for="@Model.Features[i].Selected" />
+                        <label asp-for="@Model.Features[i].Selected">@Model.Features[i].FeatureName</label>
+                        <input type="hidden" asp-for="@Model.Features[i].Id" />
+                        <input type="hidden" asp-for="@Model.Features[i].FeatureName" />
+                        <br />
+                    }
+                    <div class="form-group">
+                        <label asp-for="Rating" class="control-label"></label>
+                        <select asp-for="Rating" asp-items="Model.Ratings" class="form-control"></select>
+                        <span asp-validation-for="Rating" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OwnerName" class="control-label"></label>
+                        <input asp-for="OwnerName" class="form-control" />
+                        <span asp-validation-for="OwnerName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OwnerMobileNo" class="control-label"></label>
+                        <input asp-for="OwnerMobileNo" class="form-control" />
+                        <span asp-validation-for="OwnerMobileNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Scripts
+{
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link type="text/css" rel="stylesheet" href="~/theme/dist/css/image-uploader.min.css">
+    <script type="text/javascript" src="~/theme/dist/js/image-uploader.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            tinymce.init({ selector: 'textarea', menubar: false  });
+
+            // Multiple images preview in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    if (filesAmount > 4) {
+                        alert("Maksimal gambar tambahan hanya 4");
+                        $('#FileList').val("");
+                    }
+                    else {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            $('div.gallery').empty();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>'))
+                                    .attr({
+                                        'src': event.target.result,
+                                        'width': 200,
+                                        'class':'m-1'
+                                    }).appendTo(placeToInsertImagePreview);
+                            }
+
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    }
+                }
+            };
+
+            $('#FileList').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+
+            // Single image preview in browser
+            var ImagePreview = function (input, placeToInsertImagePreview) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    $(placeToInsertImagePreview).empty();
+                    reader.onload = function (event) {
+                        $($.parseHTML('<img>'))
+                            .attr({
+                                'src': event.target.result,
+                                'width': 500
+                            }).appendTo(placeToInsertImagePreview);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            };
+
+            $('#File1').on('change', function () {
+                ImagePreview(this, 'div.GalleryFile1');
+            });
+            $('#File6').on('change', function () {
+                ImagePreview(this, 'div.GalleryFile6');
+            });
+
+            $("#Kota").change(function () {
+            var val = $(this).val();
+            var subItems="";
+                $.getJSON("@Url.Action("GetKecamatan","Listings")", {kotaName:val} ,function (data) {
+                    $.each(data, function (index, item) {
+                    subItems+="<option value='"+item.value+"'>"+item.text+"</option>"
+                  });
+                    $("#Kecamatan").html(subItems)
+                });
+            });
+
+        });
+
+        function Comma(Num) { //function to add commas to textboxes
+            Num += '';
+            Num = Num.replace('.', ''); Num = Num.replace('.', ''); Num = Num.replace('.', '');
+            Num = Num.replace('.', ''); Num = Num.replace('.', ''); Num = Num.replace('.', '');
+            x = Num.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1))
+                x1 = x1.replace(rgx, '$1' + '.' + '$2');
+            return x1 + x2;
+        }
+
+    </script>
+}

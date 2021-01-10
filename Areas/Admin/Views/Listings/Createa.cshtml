@@ -1,0 +1,145 @@
+﻿@model PinBackendSystem.Models.Listing
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Create Listing</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Listing</li>
+                        <li class="breadcrumb-item active">Create</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <h4>Rumah</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create" enctype="multipart/form-data" asp-route-returnurl="Index">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="PropertyId" class="control-label"></label>
+                        <input asp-for="PropertyId" class="form-control" value="PR99" />
+                        <span asp-validation-for="PropertyId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" value="judul posting 1" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" value="deskripsi posting 1" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="File1" class="control-label"></label>
+                        <input asp-for="File1" class="form-control" type="file" />
+                        <span asp-validation-for="File1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="File2" class="control-label"></label>
+                        <input asp-for="File2" class="form-control" type="file" />
+                        <span asp-validation-for="File2" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="File3" class="control-label"></label>
+                        <input asp-for="File3" class="form-control" type="file" />
+                        <span asp-validation-for="File3" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="File4" class="control-label"></label>
+                        <input asp-for="File4" class="form-control" type="file" />
+                        <span asp-validation-for="File4" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="File5" class="control-label"></label>
+                        <input asp-for="File5" class="form-control" type="file" />
+                        <span asp-validation-for="File5" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" value="alamat posting 1" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LandSize" class="control-label"></label>
+                        <input asp-for="LandSize" class="form-control" />
+                        <span asp-validation-for="LandSize" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BuildingSize" class="control-label"></label>
+                        <input asp-for="BuildingSize" class="form-control" />
+                        <span asp-validation-for="BuildingSize" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropertyType" class="control-label"></label>
+                        <input asp-for="PropertyType" class="form-control" value="rumah" />
+                        <span asp-validation-for="PropertyType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfBed" class="control-label"></label>
+                        <input asp-for="NoOfBed" class="form-control" type="number" />
+                        <span asp-validation-for="NoOfBed" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfBath" class="control-label"></label>
+                        <input asp-for="NoOfBath" class="form-control" type="number" />
+                        <span asp-validation-for="NoOfBath" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfFloor" class="control-label"></label>
+                        <input asp-for="NoOfFloor" class="form-control" type="number" />
+                        <span asp-validation-for="NoOfFloor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoOfGarage" class="control-label"></label>
+                        <input asp-for="NoOfGarage" class="form-control" type="number" />
+                        <span asp-validation-for="NoOfGarage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PropertyCondition" class="control-label"></label>
+                        <input asp-for="PropertyCondition" class="form-control" value="second" />
+                        <span asp-validation-for="PropertyCondition" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" value=1000000000 />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Features" class="control-label"></label>
+                        <input asp-for="Features" class="form-control" />
+                        <span asp-validation-for="Features" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OwnerName" class="control-label"></label>
+                        <input asp-for="OwnerName" class="form-control" value="jaka" />
+                        <span asp-validation-for="OwnerName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OwnerMobileNo" class="control-label"></label>
+                        <input asp-for="OwnerMobileNo" class="form-control" value="081454678987" />
+                        <span asp-validation-for="OwnerMobileNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

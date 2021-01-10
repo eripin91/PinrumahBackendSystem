@@ -1,0 +1,269 @@
+﻿@model PinBackendSystem.Models.ListingPropertyTypeViewModel
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    @{
+                        string StatusWord = "All Survey";
+                        if (Context.Request.Query["status"] == "1")
+                        {
+                            StatusWord = "All Ads";
+                        }
+                        else if (Context.Request.Query["status"] == "5")
+                        {
+                            StatusWord = "All Tele";
+                        }
+                    }
+                    <h1>View @StatusWord Listing</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <p>
+            <a asp-action="Create" hidden="@(Context.Request.Query["status"]=="1" || Context.Request.Query["status"]=="5")">Create New</a>
+        </p>
+        <br />
+        <form asp-controller="Listings" asp-action="Index" method="get">
+            <p>
+                Property Id: <input type="text" asp-for="SearchIdString" value="@ViewData["CurrentIdFilter"]" />
+                &nbsp;&nbsp;
+                Tipe Properti: <select id="PropertyType" name="PropertyType" asp-items="Model.PropertyType">
+                    <option value="">All</option>
+                </select>
+                &nbsp;&nbsp;
+                Judul: <input type="text" asp-for="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" />
+            </p>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].PropertyId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].ImagePath1)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].PropertyType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].CreatedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].AgentEmail)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].OwnerName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Listings[0].ModifiedOn)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Listings)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PropertyId)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.ImagePath1)" alt="@Url.Content(item.ImagePath1)" width="150" height="150" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PropertyType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AgentEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OwnerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>
+                    @{
+                        int newStatus = -1;
+                        int returnStatus = -1;
+                        string buttonPublish = string.Empty;
+                        string buttonPromote = "Promote";
+                        string _isFeatured = "true";
+
+                        if (item.IsFeatured)
+                        {
+                            _isFeatured = "false";
+                            buttonPromote = "Unpromote";
+                        }
+
+                        if (Context.Request.Query["status"] == "5")
+                        {
+                            if (item.Status == 5)
+                            {
+                                newStatus = 1;
+                                returnStatus = 5;
+                                buttonPublish = "Publish";
+                            }
+                        }
+                        else if (Context.Request.Query["status"] == "1")
+                        {
+                            if (item.Status == 1)
+                            {
+                                newStatus = 5;
+                                returnStatus = 1;
+                                buttonPublish = "Unpublish";
+                            }
+                        }
+                        else
+                        {
+                            if (item.Status == 0)
+                            {
+                                newStatus = 5;
+                                returnStatus = 0;
+                                buttonPublish = "Request Iklan";
+                            }
+                        }
+                    }
+                    @if ((User.IsInRole("ads") || User.IsInRole("admin")) || item.Status != 5)
+                    {
+                <td>
+                    <form asp-action="Publish" asp-route-returnUrl="@Context.Request.Path" method="post" role="form">
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        <input type="hidden" name="_status" value="@newStatus" />
+                        <input type="hidden" name="_returnStatus" value="@returnStatus" />
+                        <div class="form-group">
+                            <input type="submit" value="@buttonPublish" class="btn btn-primary" />
+                        </div>
+                    </form>
+                    @if(item.Status == 1){
+                    <form asp-action="Promote" asp-route-returnUrl="@Context.Request.Path" method="post" role="form">
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        <input type="hidden" name="_isFeatured" value="@_isFeatured" />
+                        <input type="hidden" name="_returnStatus" value="@returnStatus" />
+                        <div class="form-group">
+                            <input type="submit" value="@buttonPromote" class="btn btn-primary" />
+                        </div>
+                    </form>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnurl="Index">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnurl="Index" hidden="@(Context.Request.Query["status"] == "1")">| Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnurl="Index" hidden="@(Context.Request.Query["status"] == "1")">| Delete</a>
+                </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+        @{
+                var prevDisabled = !Model.Listings.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.Listings.HasNextPage ? "disabled" : "";
+        }
+    <ul class="pagination">
+
+        <a asp-action="Index"
+           asp-route-pageNumber="@(Model.Listings.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           asp-route-propertyType="@ViewData["CurrentPropertyType"]"
+           asp-route-status="@Context.Request.Query["status"]"
+           class="btn btn-primary @prevDisabled">
+            Previous
+        </a>
+        <a asp-action="Index"
+           asp-area="Admin"
+           asp-route-pageNumber="1"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           asp-route-currentIdFilter="@ViewData["CurrentIdFilter"]"
+           asp-route-propertyType="@ViewData["CurrentPropertyType"]"
+           asp-route-status="@Context.Request.Query["status"]"
+           class="btn btn-default @prevDisabled">
+            1
+        </a>
+        @{
+            int currentPage = Model.Listings.PageIndex;
+            int start = currentPage;
+            int end = currentPage;
+
+
+            if (currentPage - 1 >= 1) start = currentPage - 1;
+
+            if (currentPage + 1 <= Model.Listings.TotalPages) end = currentPage + 1;
+
+            if (start - 1 > 1)
+            {
+            @:<li><span>...</span></li>
+            }
+            for (var j = start; j <= end; j++)
+            {
+                if (j == 1 || j == Model.Listings.TotalPages) continue;
+
+
+            @:<li class="page-item @(j == Model.Listings.PageIndex ? "active" : "")">
+                <a asp-action="Index"
+                   asp-route-pageNumber="@j"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-currentIdFilter="@ViewData["CurrentIdFilter"]"
+                   asp-route-propertyType="@ViewData["CurrentPropertyType"]"
+                   asp-route-status="@Context.Request.Query["status"]"
+                   class="page-link">@j</a>
+            @:</li>
+            }
+            if (end + 1 < Model.Listings.TotalPages)
+            {
+            @:<li><span>...</span></li>
+            }
+        }
+        @if(Model.Listings.TotalPages>1){
+            <a asp-action="Index"
+               asp-area="Admin"
+               asp-route-pageNumber="@(Model.Listings.TotalPages)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               asp-route-currentIdFilter="@ViewData["CurrentIdFilter"]"
+               asp-route-propertyType="@ViewData["CurrentPropertyType"]"
+               asp-route-status="@Context.Request.Query["status"]"
+               class="btn btn-default @nextDisabled">
+                @Model.Listings.TotalPages
+            </a>
+        }
+        <a asp-action="Index"
+           asp-route-pageNumber="@(Model.Listings.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           asp-route-propertyType="@ViewData["CurrentPropertyType"]"
+           asp-route-status="@Context.Request.Query["status"]"
+           class="btn btn-primary @nextDisabled">
+            Next
+        </a>
+
+    </ul>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
